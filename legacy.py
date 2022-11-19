@@ -368,9 +368,18 @@ def convert_network_pickle(source, dest, force_fp16):
         --source=https://nvlabs-fi-cdn.nvidia.com/stylegan2/networks/stylegan2-cat-config-f.pkl \\
         --dest=stylegan2-cat-config-f.pkl
     """
+    
+    import dnnlib as dnnlib
+    G_kwargs = dnnlib.EasyDict()
+    size_x = 1024
+    size_y = 1024
+    size = [size_x, size_y]
+    G_kwargs.size = size
+    G_kwargs.scale_type = 'pad'
+    custom = True
     print(f'Loading "{source}"...')
     with dnnlib.util.open_url(source) as f:
-        data = load_network_pkl(f, force_fp16=force_fp16)
+        data = load_network_pkl(f,custom=custom, **G_kwargs, force_fp16=force_fp16)
     print(f'Saving "{dest}"...')
     with open(dest, 'wb') as f:
         pickle.dump(data, f)
