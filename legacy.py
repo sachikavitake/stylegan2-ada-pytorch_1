@@ -369,7 +369,7 @@ def convert_network_pickle(source, dest, force_fp16):
         --dest=stylegan2-cat-config-f.pkl
     """
     
-    import dnnlib as dnnlib
+    
     G_kwargs = dnnlib.EasyDict()
     size_x = 1024
     size_y = 1024
