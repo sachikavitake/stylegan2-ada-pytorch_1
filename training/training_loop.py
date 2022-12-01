@@ -368,8 +368,6 @@ def training_loop(
                 snapshot_data[name] = module
                 del module # conserve memory
             get_dataname = run_dir.split('-',4)
-            print(run_dir)
-            print(get_dataname)
             snapshot_pkl = os.path.join(run_dir, f'{get_dataname[3]}-network-snapshot-{cur_nimg//1000:06d}.pkl')
             if rank == 0:
                 with open(snapshot_pkl, 'wb') as f:
