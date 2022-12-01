@@ -539,6 +539,7 @@ def main(ctx, outdir, dry_run, **config_kwargs):
     prev_run_ids = [int(x.group()) for x in prev_run_ids if x is not None]
     cur_run_id = max(prev_run_ids, default=-1) + 1
     print(cur_run_id)
+    print(run_desc)
     args.run_dir = os.path.join(outdir, f'{cur_run_id:05d}-{run_desc}')
     assert not os.path.exists(args.run_dir)
 
