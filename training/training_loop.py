@@ -367,9 +367,8 @@ def training_loop(
                     module = copy.deepcopy(module).eval().requires_grad_(False).cpu()
                 snapshot_data[name] = module
                 del module # conserve memory
-            print(name)
-            print(module)
-            snapshot_pkl = os.path.join(run_dir, f'network-snapshot-{cur_nimg//1000:06d}.pkl')
+            get_dataname = run_dir.stem.split('-',2)
+            snapshot_pkl = os.path.join(run_dir, f'{get_dataname[1]}-network-snapshot-{cur_nimg//1000:06d}.pkl')
             if rank == 0:
                 with open(snapshot_pkl, 'wb') as f:
                     pickle.dump(snapshot_data, f)
